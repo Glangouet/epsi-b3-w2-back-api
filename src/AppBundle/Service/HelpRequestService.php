@@ -9,6 +9,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\HelpRequest;
+use AppBundle\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManager;
 use FOS\UserBundle\Model\UserManager;
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -21,11 +22,14 @@ class HelpRequestService
 
     private $helpRequestRepository;
 
+    private $projectRepository;
+
     public function __construct(EntityManager $entityManager, UserManager $userManager)
     {
         $this->em = $entityManager;
         $this->userManager = $userManager;
         $this->helpRequestRepository = $entityManager->getRepository('AppBundle:HelpRequest');
+        $this->projectRepository = $entityManager->getRepository('AppBundle:Project');
     }
 
     /**
@@ -39,7 +43,11 @@ class HelpRequestService
         $helpRequest->setDate(new \DateTime());
         $helpRequest->setDescription($data->get('description'));
         $helpRequest->setTitle($data->get('title'));
-        $helpRequest->setProjectId($data->get('projectId'));
+        $helpRequest->setProjectId($this->projectRepository->find($data->get('projectId')));
+
+        foreach ($data->get('usersRequested') as $userId) {
+            $helpRequest->addUsersRequested($this->userManager->findUserBy(['id' => $userId]));
+        }
 
         $this->em->persist($helpRequest);
         $this->em->flush();

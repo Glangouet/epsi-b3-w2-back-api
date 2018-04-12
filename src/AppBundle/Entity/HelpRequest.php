@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\UserInterface;
 
 /**
  * HelpRequest
@@ -172,13 +173,10 @@ class HelpRequest
     }
 
     /**
-     * Add usersRequested.
-     *
-     * @param \AppBundle\Entity\User $usersRequested
-     *
-     * @return HelpRequest
+     * @param UserInterface $usersRequested
+     * @return $this
      */
-    public function addUsersRequested(\AppBundle\Entity\User $usersRequested)
+    public function addUsersRequested(UserInterface $usersRequested)
     {
         $this->usersRequested[] = $usersRequested;
 
