@@ -7,7 +7,7 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
-    jwt_private_key_path: '%kernel.root_dir%/../var/jwt/private2.pem'
-    jwt_public_key_path: '%kernel.root_dir%/../var/jwt/public.pem'
-    jwt_key_pass_phrase: guillaume
+    jwt_private_key_path: '%kernel.root_dir%/../app/config/jwt/private2.pem'
+    jwt_public_key_path: '%kernel.root_dir%/../app/config/jwt/public.pem'
+    jwt_key_pass_phrase: test
     jwt_token_ttl: 3600
