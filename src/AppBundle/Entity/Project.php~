@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\UserInterface;
 
 /**
  * Project
@@ -73,5 +74,13 @@ class Project
      * @ORM\Column(name="creationDate", type="datetime")
      */
     private $creationDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="token", type="integer", nullable=true)
+     */
+    private $token;
+
 
 }

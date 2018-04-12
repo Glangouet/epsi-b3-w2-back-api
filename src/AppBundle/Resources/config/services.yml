@@ -14,3 +14,9 @@ services:
             arguments:
               - "@doctrine.orm.entity_manager"
               - "@fos_user.user_manager"
+
+    api.help_request_service:
+            class: AppBundle\Service\HelpRequestService
+            arguments:
+              - "@doctrine.orm.entity_manager"
+              - "@fos_user.user_manager"

@@ -76,6 +76,14 @@ class Project
     private $creationDate;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="token", type="integer", nullable=true)
+     */
+    private $token;
+
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -215,10 +223,37 @@ class Project
     }
 
     /**
-     * @param UserInterface $partner
-     * @return $this
+     * Set token.
+     *
+     * @param int|null $token
+     *
+     * @return Project
      */
-    public function addPartner(UserInterface $partner)
+    public function setToken($token = null)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token.
+     *
+     * @return int|null
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Add partner.
+     *
+     * @param \AppBundle\Entity\User $partner
+     *
+     * @return Project
+     */
+    public function addPartner(\AppBundle\Entity\User $partner)
     {
         $this->partners[] = $partner;
 

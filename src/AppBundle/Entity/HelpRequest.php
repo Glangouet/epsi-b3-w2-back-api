@@ -31,7 +31,7 @@ class HelpRequest
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
@@ -43,19 +43,27 @@ class HelpRequest
     private $date;
 
     /**
-     * @var \stdClass
-     *
-     * @ORM\Column(name="projectId", type="object")
+     * @ORM\OneToOne(targetEntity="Project")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
     private $projectId;
 
     /**
-     * @var \stdClass
-     *
-     * @ORM\Column(name="usersRequested", type="object")
+     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\JoinTable(name="project_request_user",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="request_id", referencedColumnName="id")}
+     *      )
      */
     private $usersRequested;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->usersRequested = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id.
@@ -142,11 +150,11 @@ class HelpRequest
     /**
      * Set projectId.
      *
-     * @param \stdClass $projectId
+     * @param \AppBundle\Entity\Project|null $projectId
      *
      * @return HelpRequest
      */
-    public function setProjectId($projectId)
+    public function setProjectId(\AppBundle\Entity\Project $projectId = null)
     {
         $this->projectId = $projectId;
 
@@ -156,7 +164,7 @@ class HelpRequest
     /**
      * Get projectId.
      *
-     * @return \stdClass
+     * @return \AppBundle\Entity\Project|null
      */
     public function getProjectId()
     {
@@ -164,23 +172,35 @@ class HelpRequest
     }
 
     /**
-     * Set usersRequested.
+     * Add usersRequested.
      *
-     * @param \stdClass $usersRequested
+     * @param \AppBundle\Entity\User $usersRequested
      *
      * @return HelpRequest
      */
-    public function setUsersRequested($usersRequested)
+    public function addUsersRequested(\AppBundle\Entity\User $usersRequested)
     {
-        $this->usersRequested = $usersRequested;
+        $this->usersRequested[] = $usersRequested;
 
         return $this;
     }
 
     /**
+     * Remove usersRequested.
+     *
+     * @param \AppBundle\Entity\User $usersRequested
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeUsersRequested(\AppBundle\Entity\User $usersRequested)
+    {
+        return $this->usersRequested->removeElement($usersRequested);
+    }
+
+    /**
      * Get usersRequested.
      *
-     * @return \stdClass
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUsersRequested()
     {
