@@ -10,6 +10,7 @@ namespace AppBundle\Service;
 
 
 use AppBundle\Entity\Project;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManager;
 use FOS\UserBundle\Model\UserManager;
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -63,5 +64,29 @@ class ProjectService
     public function getById($id)
     {
         return $this->projectRepository->find($id);
+    }
+
+    /**
+     * @param ParameterBag $data
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function updateProject(ParameterBag $data)
+    {
+        $project = $this->projectRepository->find($data->get('id'));
+        $project->setStartDate(new \DateTime($data->get('dateStart')));
+        $project->setEndDate(new \DateTime($data->get('dateEnd')));
+        $project->setName($data->get('name'));
+        $project->setDescription($data->get('description'));
+        foreach ($data->get('partners') as $partnerId) {
+            $partner = $this->userManager->findUserBy(['id' => $partnerId]);
+            /** @var Collection $partners */
+            $partners = $project->getPartners();
+            if (!$partners->contains($partner)) {
+                $project->addPartner($partner);
+            }
+        }
+
+        $this->em->flush();
     }
 }

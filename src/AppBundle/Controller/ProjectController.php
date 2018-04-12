@@ -66,4 +66,23 @@ class ProjectController extends FOSRestController
 
         return $projectService->getById($id);
     }
+
+    /**
+     * @param Request $request
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Rest\Put(
+     *      path = "/project/update",
+     *      options = { "expose" = true },
+     *      name = "api_project_update"
+     * )
+     *
+     */
+    public function updateProjectAction(Request $request)
+    {
+        $projectService = $this->get('api.project_service');
+
+        $projectService->updateProject($request->request);
+    }
 }
