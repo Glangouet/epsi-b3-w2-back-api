@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\UserInterface;
 
 /**
  * Project
@@ -214,13 +215,10 @@ class Project
     }
 
     /**
-     * Add partner.
-     *
-     * @param \AppBundle\Entity\User $partner
-     *
-     * @return Project
+     * @param UserInterface $partner
+     * @return $this
      */
-    public function addPartner(\AppBundle\Entity\User $partner)
+    public function addPartner(UserInterface $partner)
     {
         $this->partners[] = $partner;
 

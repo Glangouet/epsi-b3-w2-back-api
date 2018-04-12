@@ -1,0 +1,60 @@
+Dialova\ApiBundle\Entity\User:
+  attributes:
+    id:
+        groups: ['user']
+    username:
+        groups: ['user']
+    last_ip:
+        groups: ['user']
+    registration_date:
+        groups: ['user']
+    last_activity:
+        groups: ['user']
+    last_login:
+        groups: ['user']
+    email:
+        groups: ['user']
+    userProfile.birthDate:
+      groups: ['user']
+    userProfile.sex:
+      groups: ['user']
+    userProfile.relationshipStatus.id:
+      groups: ['user']
+    userProfile.relationshipStatus.label:
+      groups: ['user']
+    userProfile.profession.id:
+      groups: ['user']
+    userProfile.profession.label:
+      groups: ['user']
+    userProfile.lovePreference.id:
+      groups: ['user']
+    userProfile.lovePreference.label:
+      groups: ['user']
+    userProfile.expectation.id:
+      groups: ['user']
+    userProfile.expectation.label:
+      groups: ['user']
+    userProfile.country:
+      groups: ['user']
+    userProfile.department:
+      groups: ['user']
+    userProfile.postalCode:
+      groups: ['user']
+    userProfile.city:
+      groups: ['user']
+    userProfile.height:
+      groups: ['user']
+    userProfile.weight:
+      groups: ['user']
+    userProfile.eyesColor.id:
+      groups: ['user']
+    userProfile.eyesColor.label:
+      groups: ['user']
+    userProfile.hairColor.id:
+      groups: ['user']
+    userProfile.hairColor.label:
+      groups: ['user']
+    userProfile.musicalPreference:
+      groups: ['user']
+    userProfile.hobby:
+      groups: ['user']

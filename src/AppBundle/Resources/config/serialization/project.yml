@@ -1,0 +1,16 @@
+AppBundle\Entity\Project:
+  attributes:
+    id:
+        groups: ['project']
+    name:
+        groups: ['project']
+    startDate:
+        groups: ['project']
+    endDate:
+        groups: ['project']
+    partners:
+        groups: ['project']
+    creationDate:
+        groups: ['project']
+    description:
+        groups: ['project']

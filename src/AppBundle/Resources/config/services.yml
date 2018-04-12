@@ -1,0 +1,16 @@
+services:
+
+#############################
+########### SERVICES ########
+#############################
+
+    api.user_service:
+            class: AppBundle\Service\UserService
+            arguments:
+              - "@doctrine.orm.entity_manager"
+
+    api.project_service:
+            class: AppBundle\Service\ProjectService
+            arguments:
+              - "@doctrine.orm.entity_manager"
+              - "@fos_user.user_manager"

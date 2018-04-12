@@ -1,0 +1,4 @@
+# src/Dialova/ApiBundle/Resources/config/serialization.yml
+
+imports:
+    - { resource: 'serialization/project.yml' }
