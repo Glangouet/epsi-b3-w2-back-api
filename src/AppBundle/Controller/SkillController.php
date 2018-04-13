@@ -8,8 +8,24 @@
 
 namespace AppBundle\Controller;
 
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
-class SkillController
+class SkillController extends FOSRestController
 {
+    /**
+     *
+     * @Rest\Get(
+     *      path = "/skill/get-all",
+     *      options = { "expose" = true },
+     *      name = "api_skill_get_all"
+     * )
+     *
+     */
+    public function getAll()
+    {
+        $skillService = $this->get('api.skill_services');
 
+        return $skillService->getAll();
+    }
 }

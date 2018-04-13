@@ -20,3 +20,9 @@ services:
             arguments:
               - "@doctrine.orm.entity_manager"
               - "@fos_user.user_manager"
+
+    api.skill_services:
+            class: AppBundle\Service\SkillService
+            arguments:
+              - "@doctrine.orm.entity_manager"
+              - "@fos_user.user_manager"
